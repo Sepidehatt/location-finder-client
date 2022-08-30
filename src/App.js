@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import { useState } from "react";
 import './App.css';
+import axios from 'axios'
 
 function App() {
+  const [latitude, setLatitude] = useState(null)
+  const [longitude, setLongitude] = useState(null)
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getCoordinates)
+    } else {
+      alert('Geolocation is not supported by this browser')
+    }
+  }
+
+  const getCoordinates = (position) => {
+    setLatitude(position.coords.latitude)
+    setLongitude(position.coords.longitude)
+
+  }
+
+
+  
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form >
+        <button onClick={getLocation}>Get Coordinate</button>
+      </form>
+      <h4>Latitude : {latitude}</h4>
+      <h4>longitude : {longitude}</h4>
     </div>
   );
 }
