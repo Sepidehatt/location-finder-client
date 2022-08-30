@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import './App.css';
 import axios from 'axios'
+import LogIn from "./pages/LogIn";
+import Register from "./pages/Register";
 
 function App() {
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
+  const [isLoggedIn, setLoggedIn ] = useState(false);
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -56,6 +60,11 @@ function App() {
 
   return (
     <div className="App">
+    <Routes>
+    <Route path='/auth/login' element={<LogIn setIsLoggedIn={setLoggedIn} />}/>
+        <Route path='/auth/register' element={<Register />} />
+        
+    </Routes>
       <form onSubmit={handleSubmit}>
         <button onClick={getLocation}>Get Coordinate</button>
       </form>
