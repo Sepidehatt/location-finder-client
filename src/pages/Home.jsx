@@ -54,19 +54,39 @@ const Home = ({ isLoggedIn }) => {
 
 
   return (
-    <div>
+    <div
+      style={{
+        margin: '15px auto',
+        borderRadius: '10px',
+        background: '#fff',
+        padding: '30px',
+        width: '90%',
+        maxWidth: '450px',
+        boxShadow: '0 30px 60px 0 rgba(0,0,0,0.3)',
+        textAlign: 'center',
+      }}
+    >
       {isLoggedIn || token ?
         <div>
           <form onSubmit={handleSubmit}>
-            <button onClick={getLocation}>Get Coordinate</button>
+            <button
+              onClick={getLocation}
+              style={{
+                padding: '10px 15px',
+                borderRadius: '4px',
+                border: 'none',
+                backgroundColor: 'darkcyan',
+                color: 'white'
+              }}
+            >Get Coordinate</button>
           </form>
           <h4>Latitude : {latitude}</h4>
-          <h4>longitude : {longitude}</h4>
+          <h4>Longitude : {longitude}</h4>
         </div>
         :
         <Navigate to="/auth/login" />
       }
-    </div>
+    </div >
   )
 }
 
