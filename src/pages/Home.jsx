@@ -21,12 +21,13 @@ const Home = ({ isLoggedIn }) => {
 
 
   const handleSubmit = (e) => {
+    getLocation()
     e.preventDefault()
     if (latitude !== null && longitude !== null) {
       axios
         .post("http://localhost:3001/create-location", { latitude, langitude: longitude })
         .then(response => {
-          console.log(response.data)
+          alert('Your Location Saved Successfully!')
         })
     }
   }
@@ -78,7 +79,7 @@ const Home = ({ isLoggedIn }) => {
                 backgroundColor: 'darkcyan',
                 color: 'white'
               }}
-            >Get Coordinate</button>
+            >{!latitude && !longitude ? 'Get Coordinate' : 'Save Location'}</button>
           </form>
           <h4>Latitude : {latitude}</h4>
           <h4>Longitude : {longitude}</h4>
