@@ -25,7 +25,7 @@ const Home = ({ isLoggedIn }) => {
     e.preventDefault()
     if (latitude !== null && longitude !== null) {
       axios
-        .post("http://localhost:3001/create-location", { latitude, langitude: longitude })
+        .post(`${process.env.REACT_APP_API_URL}/create-location`, { latitude, langitude: longitude })
         .then(response => {
           alert('Your Location Saved Successfully!')
         })
@@ -51,6 +51,7 @@ const Home = ({ isLoggedIn }) => {
 
     }
   }
+
   let token = localStorage.getItem('token')
 
 
@@ -87,7 +88,7 @@ const Home = ({ isLoggedIn }) => {
         :
         <Navigate to="/auth/login" />
       }
-    </div >
+    </div>
   )
 }
 

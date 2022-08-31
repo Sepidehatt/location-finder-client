@@ -1,7 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios';
-import './Register.css'
+import './Register&Login.css'
 
 
 const LogIn = ({ setIsLoggedIn }) => {
@@ -15,7 +15,7 @@ const LogIn = ({ setIsLoggedIn }) => {
     e.preventDefault();
     const requestBody = { email, password };
     axios
-      .post("http://localhost:3001/auth/login", requestBody)
+      .post(`${process.env.REACT_APP_API_URL}/auth/login`, requestBody)
       .then(response => {
         localStorage.setItem('token', response.data.token);
         setIsLoggedIn(true)
