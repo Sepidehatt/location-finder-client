@@ -25,7 +25,7 @@ const Home = ({ isLoggedIn }) => {
     e.preventDefault()
     if (latitude !== null && longitude !== null) {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/create-location`, { latitude, longitude })
+        .post(`${process.env.REACT_APP_API_URL}/locations`, { latitude, longitude })
         .then(response => {
           alert('Your Location Saved Successfully!')
         })
